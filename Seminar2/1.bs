@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ $1 == "r" || $1 == "R" ]]; then
+ 	 shift
+ 	 ls $@
+ 	 
+elif [[ $1 == "s" || $1 == "S" ]]; then
+	shift
+	rm $@
+	
+else 
+	extension=".$1"
+  	shift
+  	for file in "$@"; do
+  		#echo $file
+  		#newFile = $file + $extension
+  		#echo $newFile
+    	mv $file $file$extension  	
+  	done
+fi

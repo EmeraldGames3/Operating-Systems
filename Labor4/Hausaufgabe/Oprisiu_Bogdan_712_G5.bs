@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Check if directory is provided as argument
+if [ $# -ne 1 ]; then
+  	echo "Please provide a directory name as argument."
+  	exit 1
+fi
+
+# Check if directory exists
+if [ ! -d "$1" ]; then
+  	echo "$1 is not a directory."
+  	exit 1
+fi
+
+# Print the names of all .c files in the directory
+echo "C files in $(basename "$1") that contain at least three libraries:"
+for file in "$1"/*.c; do
+  	if [ -f "$file" ]; then
+    	if [ "$(grep -c "^#include" "$file")" -ge 3 ]; then
+    	  echo "$(basename "$file")"
+#   	 else
+#   	   echo "File $(basename "$file") does not contain at least three #include statements."
+    	fi
+  	fi
+done

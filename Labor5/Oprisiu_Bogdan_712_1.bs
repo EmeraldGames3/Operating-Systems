@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]; then
+    echo "Error: no files provided."
+    exit 1
+fi
+
+for file in "$@"; do
+    # use awk to count vowels and consonants
+    vowel_count=$(awk '{gsub(/[aeiouAEIOU]/,"")} END{print NR}' "$file")
+    consonant_count=$(awk '{gsub(/[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]/,"")} END{print NR}' "$file")
+    
+    # output result in the correct format
+    echo "$file $vowel_count $consonant_count"
+done
+

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Create directories
+mkdir -p test_folder/{subfolder1,subfolder2}
+
+# Create text files
+echo "This is a test file" > test_folder/test1.txt
+echo -e "This is a test file\nwith multiple lines" > test_folder/test2.txt
+echo "This is another test file" > test_folder/subfolder1/test3.txt
+echo -e "This is a test file\nin subfolder 2" > test_folder/subfolder2/test4.txt
+

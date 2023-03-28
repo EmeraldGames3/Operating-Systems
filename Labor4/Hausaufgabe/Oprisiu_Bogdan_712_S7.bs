@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Check if a file was provided
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 file"
+  exit 1
+fi
+
+# Check if the file exists
+if [ ! -f "$1" ]; then
+  echo "File not found: $1"
+  exit 1
+fi
+
+# vowel replacement
+sed 'y/aeiouAEIOU/AEIOUaeiou/' "$1"
+

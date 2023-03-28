@@ -1,0 +1,3 @@
+This is a sample file for testing.
+It contains some lowercase and uppercase vowels: a, e, i, o, u, A, E, I, O, U.
+Let's see if the script can replace them correctly!
