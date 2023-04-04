@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Check if at least one parameter was received
+if [ $# -eq 0 ]; then
+    echo "No directory was provided"
+    exit 1
+fi
+
+# Loop through all directories passed as parameters
+for directory in "$@"
+do
+    # Check if the directory exists
+    if [ -d "$directory" ]; then
+        # Show the basename of all files in the directory
+        echo "Files in directory $directory:"
+        for file in "$directory"/*
+        do
+            # Check if the file contains any non-text characters
+			if grep -q '[^[:alpha:][:space:]\t\n]' "$file"; then
+
+                echo "$(basename "$file")"
+            fi
+        done
+        echo ""
+    else
+        echo "Directory $directory does not exist."
+    fi
+done
+
