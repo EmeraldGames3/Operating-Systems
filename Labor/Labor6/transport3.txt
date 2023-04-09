@@ -1,0 +1,4 @@
+IN
+Schrauben, 50
+Nägel, 100
+Dübel, 20
