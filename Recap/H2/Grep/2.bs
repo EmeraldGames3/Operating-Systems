@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+    echo "Invalid number of arguments. Usage: $0 <word> <filename...>"
+    exit 1
+fi
+
+word=$1
+
+shift
+
+count=0
+for file in "$@"; do
+    if echo "$file" | grep -q "$word"; then
+        echo "$file"
+        count=$((count+1))
+    fi
+done
+
+echo "Total matching files: $count"
+exit 0

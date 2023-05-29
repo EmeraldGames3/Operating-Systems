@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+  echo "Invalid number of arguments"
+  exit 1
+fi
+
+directory=$1
+
+#arr=($(grep -Erc "^" --include="*.txt" "$directory"))
+
+#total_lines=0
+
+#for element in "${arr[@]}"; do
+#  count=$(echo "$element" | cut -d ':' -f 2) 
+#  total_lines=$((total_lines + count))
+#done
+
+#echo "Total lines: $total_lines"
+
+file_list=($(find "$directory" -type f -name "*.txt"))
+
+total_lines=0
+
+for file in "${file_list[@]}"; do
+  lines=$(wc -l < "$file")
+  total_lines=$((total_lines + lines))
+done
+
+echo "Total lines: $total_lines"

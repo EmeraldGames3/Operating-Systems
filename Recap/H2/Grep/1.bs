@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Invalid number of arguments"
+    exit 1
+fi
+
+directory=$1
+
+grep -rhe "^" --include="*.txt" "$directory"

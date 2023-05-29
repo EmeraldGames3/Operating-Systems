@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Invalid number of arguments"
+    exit 1
+fi
+
+file=$1
+
+sed 's/\b[0-9]\+\b//g' "$file"
+
+exit 0

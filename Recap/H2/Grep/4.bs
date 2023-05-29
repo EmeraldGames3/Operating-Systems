@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Invalid number of arguments"
+    exit 1
+fi
+
+# Capture the output of the command in an array
+filenames=($(grep -rl "[[ -~[:space:]]" "$1" | xargs -I{} basename {}))
+
+# Sort the filenames
+for ((i = 0; i < ${#filenames[@]}; i++)); do
+    for ((j = i + 1; j < ${#filenames[@]}; j++)); do
+        if [[ "${filenames[i]}" > "${filenames[j]}" ]]; then
+            temp="${filenames[i]}"
+            filenames[i]="${filenames[j]}"
+            filenames[j]="$temp"
+        fi
+    done
+done
+
+# Iterate over the sorted filenames and print them
+for filename in "${filenames[@]}"; do
+    echo "$filename"
+done
+
+exit 0

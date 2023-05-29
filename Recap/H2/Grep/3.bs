@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ $# -lt 1 ]; then
+    echo "Invalid number of arguments"
+    exit 1
+fi
+
+for directory in "$@"; do
+    files=$(grep -E -r -l "[^a-zA-Z[:space:]]" "$directory")
+    for file in $files; do
+        echo "$(basename "$file")"
+    done
+done
+
+exit 0
+
